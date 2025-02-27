@@ -18,6 +18,8 @@ By stripping away complexity, Faka challenges the conventional focus on syntax, 
 
 ## How to Use 🔥
 ### 1️⃣ Install & Compile
+
+#### macOS
 Make sure you have `g++` installed. If not, install it via Homebrew:
 ```sh
 brew install gcc
@@ -25,6 +27,47 @@ brew install gcc
 Then, compile the Faka interpreter:
 ```sh
 g++ -std=c++17 faka_compiler.cpp -o faka
+```
+
+#### Linux
+Install g++ using your distribution's package manager:
+
+For Debian/Ubuntu:
+```sh
+sudo apt update
+sudo apt install g++
+```
+
+For Fedora:
+```sh
+sudo dnf install gcc-c++
+```
+
+For Arch Linux:
+```sh
+sudo pacman -S gcc
+```
+
+Then compile the Faka interpreter:
+```sh
+g++ -std=c++17 faka_compiler.cpp -o faka
+```
+
+#### Windows
+1. Install MinGW-w64 or MSYS2 for GCC support:
+   - Option 1: Download and install [MinGW-w64](https://www.mingw-w64.org/downloads/) 
+   - Option 2: Install [MSYS2](https://www.msys2.org/) and then run `pacman -S mingw-w64-x86_64-gcc`
+
+2. Add the compiler to your PATH (if not done automatically by the installer)
+
+3. Open Command Prompt or PowerShell and compile:
+```sh
+g++ -std=c++17 faka_compiler.cpp -o faka.exe
+```
+
+4. Run your Faka programs with:
+```sh
+faka.exe index.faka
 ```
 
 ### 2️⃣ Write a Faka Program
@@ -42,10 +85,19 @@ faka end
 ```
 
 ### 3️⃣ Run Your Program
+
+#### macOS/Linux
 Execute the Faka script with:
 ```sh
 ./faka index.faka
 ```
+
+#### Windows
+Execute the Faka script with:
+```sh
+faka.exe index.faka
+```
+
 **Expected Output:**
 ```sh
 Hello, Faka!
