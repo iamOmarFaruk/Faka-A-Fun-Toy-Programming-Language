@@ -1,0 +1,11 @@
+faka start
+creator variable will be string = "Omar Faruk".
+version variable will be int = 1.
+awesome variable will be boolean = true.
+
+print creator.
+print version.
+print awesome.
+
+
+faka end
