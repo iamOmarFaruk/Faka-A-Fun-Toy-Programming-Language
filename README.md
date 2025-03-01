@@ -20,56 +20,21 @@ By stripping away complexity, Faka challenges the conventional focus on syntax, 
 ## How to Use 🔥
 ### 1️⃣ Install & Compile
 
-#### macOS
-Make sure you have `g++` installed. If not, install it via Homebrew:
-```sh
-brew install gcc
-```
-Then, compile the Faka interpreter:
-```sh
-g++ -std=c++17 faka_compiler.cpp -o faka
-```
+To compile the Faka interpreter directly from the root folder:
 
-#### Linux
-Install g++ using your distribution's package manager:
-
-For Debian/Ubuntu:
+#### macOS/Linux
 ```sh
-sudo apt update
-sudo apt install g++
-```
-
-For Fedora:
-```sh
-sudo dnf install gcc-c++
-```
-
-For Arch Linux:
-```sh
-sudo pacman -S gcc
-```
-
-Then compile the Faka interpreter:
-```sh
-g++ -std=c++17 faka_compiler.cpp -o faka
+# Compile the Faka interpreter from the root folder
+g++ -std=c++17 fakacompiler/main.cpp -o faka
 ```
 
 #### Windows
-1. Install MinGW-w64 or MSYS2 for GCC support:
-   - Option 1: Download and install [MinGW-w64](https://www.mingw-w64.org/downloads/) 
-   - Option 2: Install [MSYS2](https://www.msys2.org/) and then run `pacman -S mingw-w64-x86_64-gcc`
-
-2. Add the compiler to your PATH (if not done automatically by the installer)
-
-3. Open Command Prompt or PowerShell and compile:
 ```sh
-g++ -std=c++17 faka_compiler.cpp -o faka.exe
+# Compile the Faka interpreter from the root folder
+g++ -std=c++17 fakacompiler/main.cpp -o faka.exe
 ```
 
-4. Run your Faka programs with:
-```sh
-faka.exe index.faka
-```
+You only need to compile once unless you make changes to the compiler code.
 
 ### 2️⃣ Write a Faka Program
 Create a file named `index.faka` and add the following:
@@ -121,6 +86,27 @@ Program executed successfully!
 
 ## Language Syntax 📝
 
+### Comments
+```faka
+// This is a comment in Faka. Comments start with // and end with \\ \\
+```
+
+Faka supports a unique comment style that can span single or multiple lines:
+- Comments begin with `//` and end with `\\`
+- Everything between these markers is ignored by the compiler
+- Comments can span multiple lines
+
+#### Examples:
+```faka
+// This is a single line comment \\
+
+// This is a 
+multi-line comment
+that spans several lines \\
+
+x variable will be int = 10. // This is an inline comment \\
+```
+
 ### Variable Declaration
 ```faka
 name variable will be type = value.
@@ -158,9 +144,13 @@ Note: Arithmetic operations can only be performed on integer variables and will 
 ## Project Structure 📂
 ```sh
 project/
-│── faka_compiler.cpp   # Faka Compiler (C++ source code)
-│── faka_arithmetic.h   # Arithmetic operations implementation
-│── index.faka          # Faka program example
+│── index.faka                  # Faka program example
+│── faka                        # Compiled Faka interpreter executable
+│── fakacompiler/               # Compiler implementation directory
+│   │── faka_compiler.cpp       # Faka Compiler core implementation
+│   │── faka_arithmetic.h       # Arithmetic operations implementation
+│   │── faka_comment.h          # Comment processing implementation
+│   │── main.cpp                # Main entry point for the Faka compiler
 ```
 
 If you create more Faka scripts, just run:

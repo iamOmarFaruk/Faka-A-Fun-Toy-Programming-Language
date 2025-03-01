@@ -7,6 +7,7 @@
 #include <regex>
 #include <functional>
 #include "faka_arithmetic.h"
+#include "faka_comment.h"
 
 enum class Type { INT, STRING, BOOLEAN };
 
@@ -31,11 +32,23 @@ public:
             return false;
         }
 
+        std::string fileContent;
         std::string line;
         while (std::getline(file, line)) {
-            lines.push_back(line);
+            fileContent += line + "\n";
         }
         file.close();
+        
+        // Process comments before parsing
+        fileContent = faka::process_comments(fileContent);
+        
+        // Split the processed content into lines
+        std::istringstream contentStream(fileContent);
+        lines.clear();
+        while (std::getline(contentStream, line)) {
+            lines.push_back(line);
+        }
+        
         return true;
     }
 
@@ -214,30 +227,3 @@ private:
         return str.substr(first, (last - first + 1));
     }
 };
-
-int main(int argc, char* argv[]) {
-    if (argc != 2) {
-        std::cerr << "Usage: " << argv[0] << " <file.faka>" << std::endl;
-        return 1;
-    }
-
-    std::string filename = argv[1];
-    
-    // Check file extension
-    if (filename.substr(filename.find_last_of(".") + 1) != "faka") {
-        std::cerr << "Error: File must have .faka extension" << std::endl;
-        return 1;
-    }
-
-    FakaCompiler compiler;
-    if (!compiler.loadFile(filename)) {
-        return 1;
-    }
-
-    if (!compiler.compile()) {
-        return 1;
-    }
-
-    std::cout << "Program executed successfully!" << std::endl;
-    return 0;
-}

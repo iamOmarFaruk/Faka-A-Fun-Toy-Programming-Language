@@ -1,22 +1,28 @@
 faka start
+
+// Variable declarations with different types \\
 greeting variable will be string = "Hello, Faka!".
 number variable will be int = 42.
 status variable will be boolean = true.
 
+// Print statements to display variable values \\
 print greeting.
 print number.
 print status.
 
-a variable will be int = 10.
-b variable will be int = 5.
+
+a variable will be int = 10. // This is our first operand \\
+b variable will be int = 5.  // This is our second operand \\
 calculate sum will be int = a + b.
+calculate difference will be int = a - b. // Subtracting b from a \\
 
-
-
+// Display calculation results \\
 print sum.
 
 
+// This is a multi-line comment
+   that spans across
+   multiple lines to demonstrate
+   the flexibility of Faka's comment system \\
 
-
-
-faka end
+faka end 
