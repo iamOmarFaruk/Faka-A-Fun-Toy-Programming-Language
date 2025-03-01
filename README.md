@@ -11,6 +11,7 @@ By stripping away complexity, Faka challenges the conventional focus on syntax, 
 - **Minimalist syntax** – Readable, English-like structure.
 - **Supports basic types** – `string`, `int`, and `boolean`.
 - **Simple variable assignments** – Assign and print values.
+- **Basic arithmetic operations** – Addition (+) and subtraction (-) between integer variables.
 - **Zero clutter** – Focus purely on logic, not syntax.
 - **C++ based interpreter** – Fast and efficient execution.
 
@@ -81,6 +82,14 @@ status variable will be boolean = true.
 print greeting.
 print number.
 print status.
+
+a variable will be int = 10.
+b variable will be int = 5.
+calculate sum will be int = a + b.
+calculate difference will be int = a - b.
+
+print sum.
+print difference.
 faka end
 ```
 
@@ -103,7 +112,46 @@ faka.exe index.faka
 Hello, Faka!
 42
 true
+15
+5
+Program executed successfully!
 ```
+
+---
+
+## Language Syntax 📝
+
+### Variable Declaration
+```faka
+name variable will be type = value.
+```
+
+### Print Statement
+```faka
+print variableName.
+```
+
+### Arithmetic Operations
+```faka
+calculate resultVariable will be int = variable1 + variable2.
+calculate resultVariable will be int = variable1 - variable2.
+```
+
+Currently, Faka supports addition (+) and subtraction (-) operations between integer variables.
+
+#### Example:
+```faka
+x variable will be int = 20.
+y variable will be int = 7.
+
+calculate sum will be int = x + y.      // Creates a new variable 'sum' with value 27
+calculate diff will be int = x - y.      // Creates a new variable 'diff' with value 13
+
+print sum.    // Outputs: 27
+print diff.   // Outputs: 13
+```
+
+Note: Arithmetic operations can only be performed on integer variables and will always result in an integer value.
 
 ---
 
@@ -111,6 +159,7 @@ true
 ```sh
 project/
 │── faka_compiler.cpp   # Faka Compiler (C++ source code)
+│── faka_arithmetic.h   # Arithmetic operations implementation
 │── index.faka          # Faka program example
 ```
 

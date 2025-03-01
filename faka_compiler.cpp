@@ -5,6 +5,8 @@
 #include <string>
 #include <map>
 #include <regex>
+#include <functional>
+#include "faka_arithmetic.h"
 
 enum class Type { INT, STRING, BOOLEAN };
 
@@ -67,6 +69,12 @@ public:
             // Print statement
             else if (trimmed.find("print") == 0) {
                 if (!processPrintStatement(trimmed)) {
+                    return false;
+                }
+            }
+            // Arithmetic operation
+            else if (trimmed.find("calculate") == 0 && trimmed.find("will be") != std::string::npos) {
+                if (!processArithmeticOperation(trimmed)) {
                     return false;
                 }
             }
@@ -153,6 +161,49 @@ private:
         }
         
         std::cerr << "Error: Invalid print statement: " << line << std::endl;
+        return false;
+    }
+
+    bool processArithmeticOperation(const std::string& line) {
+        // Parse arithmetic statement: calculate RESULT will be TYPE = EXPRESSION.
+        std::regex pattern("calculate (\\w+) will be (\\w+) = (.+)\\.");
+        std::smatch matches;
+        
+        if (std::regex_search(line, matches, pattern) && matches.size() == 4) {
+            std::string result_var = matches[1].str();
+            std::string type_str = matches[2].str();
+            std::string expression = matches[3].str();
+            
+            // Verify type is int
+            if (type_str != "int") {
+                std::cerr << "Error: Arithmetic operations can only result in int type" << std::endl;
+                return false;
+            }
+            
+            try {
+                // Create lambda functions to access variables
+                auto getVarValue = [this](const std::string& name) -> std::string {
+                    return this->variables[name].value;
+                };
+                
+                auto checkVarExists = [this](const std::string& name) -> bool {
+                    return this->variables.find(name) != this->variables.end();
+                };
+                
+                // Evaluate the expression
+                std::string result = faka::ArithmeticProcessor::evaluateExpression(
+                    expression, getVarValue, checkVarExists);
+                
+                // Store the result in a new variable
+                variables[result_var] = {result_var, Type::INT, result};
+                return true;
+            } catch (const std::runtime_error& e) {
+                std::cerr << "Error: " << e.what() << std::endl;
+                return false;
+            }
+        }
+        
+        std::cerr << "Error: Invalid arithmetic statement: " << line << std::endl;
         return false;
     }
 

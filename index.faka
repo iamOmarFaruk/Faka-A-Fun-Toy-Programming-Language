@@ -1,11 +1,19 @@
 faka start
-creator variable will be string = "Omar Faruk".
-version variable will be int = 1.
-awesome variable will be boolean = true.
+greeting variable will be string = "Hello, Faka!".
+number variable will be int = 42.
+status variable will be boolean = true.
 
-print creator.
-print version.
-print awesome.
+print greeting.
+print number.
+print status.
+
+a variable will be int = 10.
+b variable will be int = 5.
+calculate sum will be int = a + b.
+print sum.
+
+
+
 
 
 faka end
