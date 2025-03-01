@@ -1,0 +1,30 @@
+# Ignore the 'faka' compiler executable
+faka
+
+# Compiled Object files, Static and Dynamic libs
+*.o
+*.a
+*.so
+
+# Executables
+*.exe
+*.out
+
+# Dependency directories
+node_modules/
+vendor/
+
+# Build directories
+build/
+dist/
+bin/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo 

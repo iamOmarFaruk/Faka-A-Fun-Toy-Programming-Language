@@ -10,6 +10,9 @@ print status.
 a variable will be int = 10.
 b variable will be int = 5.
 calculate sum will be int = a + b.
+
+
+
 print sum.
 
 
